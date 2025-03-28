@@ -1,0 +1,9 @@
+
+Lab 7:
+Aim: Create a class component for changing the color of the text and apply different font styles given in react js.
+
+
+
+
+ npx create-react-app text-color
+npm install react@18 react-dom@18 web-vitals
