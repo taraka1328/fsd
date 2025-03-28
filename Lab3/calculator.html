@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Compact calculator</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                font-family: 'Poppins',sans-serif;
+                box-sizing: border-box;
+            }
+            body{
+                background: linear-gradient(to right, #283c86 , #45a247);
+                display: grid;
+                height: 100vh;
+                place-items: center;
+            }
+            .watermark{
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                font-size: 14px;
+                color: rgba(255,255,255,0.5);
+                z-index: 0;
+                pointer-events: none;
+            }
+            .main{
+                width: 300px;
+                height: auto;
+                background-color: #ecf0f1;
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            }
+            .main input[type='text']{
+                width: 100%;
+                height: 60px;
+                font-size: 24px;
+                text-align: right;
+                padding: 10px;
+                border: 2px solid #bdc3c7;
+                border-radius: 10px;
+                margin-bottom: 15px;
+                background-color: #ffffff;
+                color: #2c3e50;
+                outline: none;
+                box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .btn{
+                display: grid;
+                grid-template-columns: repeat(5,1fr);
+                grid-gap: 10px;
+                justify-content: center;
+            }
+            .btn input[type ='button']{
+                width: 40px;
+                height: 40px;
+                font-size: 15px;
+                cursor: pointer;
+                background-color: #34495e;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+            .btn input[type = 'button']:hover{
+                background-color: #2980b9;
+                box-shadow: 0 6px 8px rgba(0,0,0,0.4);
+
+            }
+            .btn input[type='button']:active{
+                background-color: #1abc9c;
+                transform: scale(1.05);
+                box-shadow: 0 0 15px rgba(33,150,243, 0.75);
+            }
+            .clear{
+                background-color: #e74c3c;
+            }
+            .clear:hover{
+                background-color: #c0392b;
+            }
+            .equal{
+                background-color: #28a745;
+            }
+
+            .btn input[value='+'],
+            .btn input[value='-'],
+            .btn input[value='/'],
+            .btn input[value='*'],
+            .btn input[value='%'],
+            .btn input[value='√,'],
+            .btn input[value='x²'] {
+                background-color: #f39c12;
+            }
+
+            .btn input[value='+']:hover,
+            .btn input[value='-']:hover,
+            .btn input[value='/']:hover,
+            .btn input[value='*']:hover,
+            .btn input[value='%']:hover,
+            .btn input[value='√']:hover,
+            .btn input[value='x²']:hover{
+                background-color: #e67e22;
+            }
+
+            .btn input[value='Del']:hover{
+                background-color: red;
+            }
+            .btn input[value = '=']:hover{
+                background-color: green;
+            }
+            @media (max-width: 480px){
+                .main{
+                    width: 90%;
+                    padding: 10px;
+                }
+                .main input[type='text']{
+                    font-size: 20px;
+                    height: 50px;
+                }
+                .btn input[type='button']{
+                    width: 50px;
+                    height: 50px;
+                    font-size: 16px;
+                }
+            }
+        </style>
+        <script>
+            function solve(val){
+                var v = document.getElementById('res');
+                v.value += val;
+            }
+            function Result(){
+                var num1 = document.getElementById('res').value;
+                try{
+                    var num2 = eval(num1);
+                    document.getElementById('res').value = num2;
+                }catch(error){
+                    document.getElementById('res').value = 'Error';
+                }
+            }
+            function Clear(){
+                var inp = document.getElementById('res');
+                inp.value='';
+
+            }
+            function Back(){
+                var ev = document.getElementById('res');
+                ev.value = ev.value.slice(0,-1);
+            }
+            function Squareroot(){
+                var v = document.getElementById('res');
+                v.value = Math.sqrt(eval(v.value));
+            }
+            function Power(){
+                var v= document.getElementById('res');
+                v.value=Math.pow(eval(v.value),2);
+            }
+            function Sine(){
+                var v = document.getElementById('res');
+                var radians = (Math.PI / 180) * eval(v.value); // Convert degrees to radians
+                v.value = Math.sin(radians);
+            }
+            function Cosine(){
+                var v= document.getElementById('res');
+                var radians = (Math.PI / 180) * eval(v.value); // Convert degrees to radians
+                v.value = Math.cos(radians);
+            }
+            function Tangent(){
+                var v=document.getElementById('res');
+                var radians = (Math.PI / 180) * eval(v.value); // Convert degrees to radians
+                v.value = Math.tan(radians);
+            }
+        </script>
+    </head>
+    <body>
+        <div class="main">
+            <input type ="text" id = "res" disabled>
+            <div class="btn">
+                <input type="button" value="C" class="Clear" onclick="Clear()">
+                <input type="button" value="00" onclick="solve('00')">
+                <input type="button" value="0" onclick="solve('0')">
+                <input type="button" value="%" onclick="solve('%')">
+                <input type="button" value="Del" onclick="Back()">
+
+                <input type="button" value="7" onclick="solve('7')">
+                <input type="button" value="8" onclick="solve('8')">
+                <input type="button" value="9" onclick="solve('9')">
+                <input type="button" value="√" onclick="Squareroot()">
+                <input type="button" value="/" onclick="solve('/')">
+
+                <input type="button" value="4" onclick="solve('4')">
+                <input type="button" value="5" onclick="solve('5')">
+                <input type="button" value="6" onclick="solve('6')">
+                <input type="button" value="x²"  onclick="Power()">
+                <input type="button" value="*"  onclick="solve('*')">
+
+                <input type="button" value="1"  onclick="solve('1')">
+                <input type="button" value="2"  onclick="solve('2')">
+                <input type="button" value="3"  onclick="solve('3')">
+                <input type="button" value="-"  onclick="solve('-')">
+                <input type="button" value="+" onclick="solve('+')">
+
+                <input type="button" value="sin" onclick="Sine()">
+                <input type="button" value="cos" onclick="Cosine()">
+                <input type="button" value="tan" onclick="Tangent()">
+                <input type="button" value="." onclick="solve('.')">
+                <input type="button" value="=" class= "equal" onclick="Result()">
+            </div>
+        </div>
+        <div class="watermark">K.T.L.Prasanna'S</div>
+    </body>
+</html>

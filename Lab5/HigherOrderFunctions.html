@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Higher Order Functions</title>
+    <style>
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Higher Order Functions</h1>
+
+    <button onClick="filterEven()">Filter Even Numbers</button>
+    <button onClick="squareNumbers()">Square Numbers</button>
+    <button onClick="calculateProduct()">Calculate Product</button>
+
+    <script>
+        // Example data
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        // Function to display results in console and page
+        function displayResult(title, result) {
+            console.log(`${title}:`, result);
+            const resultElement = document.createElement('p');
+            resultElement.textContent = `${title}: ${result}`;
+            document.body.appendChild(resultElement);
+        }
+
+        // Using filter()
+        function filterEven() {
+            const isEven = num => num % 2 === 0;
+            const filteredNumbers = numbers.filter(isEven);
+            displayResult("Filtered Even Numbers", filteredNumbers);
+        }
+
+        // Using map()
+        function squareNumbers() {
+            const square = num => num ** 2;
+            const squaredNumbers = numbers.map(square);
+            displayResult("Squared Numbers", squaredNumbers);
+        }
+
+        // Using reduce()
+        function calculateProduct() {
+            const multiply = (x, y) => x * y;
+            const product = numbers.reduce(multiply, 1); // Initial value set to 1
+            displayResult("Product of All Numbers", product);
+        }
+    </script>
+
+    <div class="watermark">K.T.L.Prasanna'S</div>
+</body>
+</html>
