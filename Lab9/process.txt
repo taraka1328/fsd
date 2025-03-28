@@ -1,0 +1,5 @@
+Aim : Display analog and digital clocks in reactjs using css
+
+
+
+Create clock.js file under src
