@@ -1,0 +1,112 @@
+Lab 6:
+Aim: Create a react app for incrementing and decrementing the value using node js ,react js and css.
+
+
+npx create-react-app counter
+Open counter app in file explorer
+Under counter > src folder create a file called "button.jsx"
+
+
+import React from "react";
+export default function Button(props){
+	let { action,title} =props;
+	return <button onClick = {action}>{title}</button>
+}
+
+Create a file called "styles.css" under counter/src folder
+
+.app{
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin:10rem;
+}
+app .count{
+margin-botton: 2rem;
+text-align : center;
+display: flex;
+margin-left: 10rem;
+}
+app.count h3{
+line-height: 8.6rem;
+margin-right: 1rem;
+}
+.app.count h1{
+font-size: 5em;
+margin-top: 2rem;
+}
+.app.buttons button{
+width: 10rem;
+height: 10rem;
+border-radius : 50%;
+border: none;
+margin: 0 2 rem;
+font-size: 5em;
+box-shadow: 0 4px 32px 0 reba(10,14,29,.02),0 8px 64px 0 reba(10,14,29,.08);
+cursor: pointer;
+}
+.app.buttons button:hover{
+font-size: 7em;
+}
+app.buttons button:focus{
+outline: 9;
+}
+body{
+display:flex;
+align-items: center;
+height:100vh;
+margin:0;
+}
+.app{
+text-align : center;
+margin-top: 20px;
+}
+.title-container{
+margin-bottom: 20px;
+}
+.title-container h2{
+text-decoration :underline;
+display :inline-block;
+}
+.count{
+margin-bottom:20px;
+}
+
+Under Counter/src folder we have app.js file in this file we have
+
+import React,{useState} from "react";
+import Button from "./button.jsx";
+import "./styles.css";
+
+export default function App(){
+const [count,setCount]=useState(0);
+let incrementCount=() =>{
+setCount(count+1);
+};
+let decrementCount=() =>{
+setCount(count-1);
+};
+return(
+<div className="app">
+<div>
+<div className = "title-container>
+<h2>COUNTER REACT APP</h2>
+<div className = "title-underline'></div>
+</div>
+<div class="count">
+<he>Count:</h3>
+<h1>{count}</h1>
+</div>
+<div class="buttons">
+<Button title={'-'} action = {decrementCount} />
+<Button title={'+'} action = {incrementCount} />
+</div>
+</div>
+</div>
+);
+}
+
+
+
+
+
